@@ -31,8 +31,6 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/target.mk
 
-CONFIGURE_ARGS += --disable-nullslack
-
 define Package/safeclibs3/default
   TITLE:=Safec library build
   SECTION:=libs
@@ -50,6 +48,8 @@ endef
 define Package/safeclibs3/description
  This package contains the safec  shared library.
 endef
+
+TARGET_CFLAGS += -D_POSIX_C_SOURCE=200809L
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include/libsafec
